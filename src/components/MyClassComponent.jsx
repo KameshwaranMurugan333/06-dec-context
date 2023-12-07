@@ -1,6 +1,8 @@
 import React, { Component } from "react";
+import { CountContext, EmailContext } from "../contexts";
 
 class MyClassComponent extends Component {
+    static contextType = EmailContext
     constructor(props) {
         super(props);
 
@@ -9,15 +11,15 @@ class MyClassComponent extends Component {
         console.log("I am in constructor");
     }
 
-    static getDerivedStateFromProps(){
+    static getDerivedStateFromProps() {
         console.log("I am in getDerivedStateFromProps");
     }
 
-    componentDidMount(){
+    componentDidMount() {
         console.log("I am from componentDidMount")
     }
 
-    shouldComponentUpdate(){
+    shouldComponentUpdate() {
         console.log("I am in shouldComponentUpdate");
         return true;
     }
@@ -36,7 +38,7 @@ class MyClassComponent extends Component {
         console.log('prevProps:', prevProps)
     }
 
-    componentWillUnmount(){
+    componentWillUnmount() {
         console.log("I am in componentWillUnmount")
     }
 
@@ -49,17 +51,15 @@ class MyClassComponent extends Component {
         return <div>
             <h1>Class Component</h1>
 
-            <h2>Received Props:</h2>
-            <p>myProp: {this.props.myProp}</p>
+            <h3>Count Context:</h3>
+            <p>Count: {this.props.countContext.count}</p>
 
-            {/* State Usage */}
-            <p>Value: <b>{this.state.value}</b></p>
-
-            <button onClick={this.increment}>+</button>
-
-            <button>-</button>
+            <h3>Email Context:</h3>
+            <p>Email: {this.props.emailContext.email}</p>
         </div>
     }
 }
+
+// MyClassComponent.contextType = CountContext
 
 export default MyClassComponent;
